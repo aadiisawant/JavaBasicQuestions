@@ -4,7 +4,8 @@ import java.util.Set;
 
 public class StringDupChars {
     public static void main(String args[]){
-        String words = "Better Butter";
+        String word = "Better Butter";
+        String words = word.replaceAll("\\s","");
         char [] carr = words.toCharArray();
         HashMap<Character, Integer> hmap = new HashMap<>();
         for(char c : carr){
