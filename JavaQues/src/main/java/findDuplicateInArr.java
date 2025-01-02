@@ -1,6 +1,18 @@
 import java.util.HashMap;
 
 public class findDuplicateInArr {
+    public static void arrNumFreq(int arr[]){
+        int n= arr.length;
+        int freq[] = new int[n];
+        for(int i=0;i<n;i++){
+            if(freq[arr[i]]==0){
+                freq[arr[i]] +=1;
+            }
+            else{
+                System.out.println(arr[i]);
+            }
+        }
+    }
     public static void main(String args[]){
         int arr [] = {1,3,4,2,2};
         HashMap<Integer, Integer> numFreq = new HashMap<>();
@@ -12,5 +24,6 @@ public class findDuplicateInArr {
             }
         }
         System.out.println(numFreq);
+        arrNumFreq(arr);
     }
 }
