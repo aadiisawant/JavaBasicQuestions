@@ -1,3 +1,5 @@
+package StringQues;
+
 import java.util.Scanner;
 //Program to rotate the String. can be used to rotate the nums also. ;)
 public class StringRotation {

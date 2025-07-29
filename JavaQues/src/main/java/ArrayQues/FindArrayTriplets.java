@@ -1,3 +1,5 @@
+package ArrayQues;
+
 import java.util.HashSet;
 
 //How To Find Array Triplets With Sum Of Two Elements Equals Third?
@@ -10,7 +12,8 @@ public class FindArrayTriplets {
             hashSet.add(arr[i]);
         }
 
-        System.out.println(hashSet);
+        System.out.println("Hashset values: "+hashSet);
+
         for(int i=0;i<arr.length;i++){
             for(int j= i+1; j< arr.length;j++){
                 if(hashSet.contains(arr[i]+arr[j])){

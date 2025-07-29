@@ -1,3 +1,5 @@
+package StringQues;
+
 public class StringOper {
     static String revMethod(String str){
         if(str == null || str.length()<=1){

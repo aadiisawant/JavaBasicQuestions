@@ -4,16 +4,16 @@ class IsValidAgeException extends Exception{
     }
 }
 public class CustomException {
-    public static void divide(int num1 , int num2) throws IsValidAgeException{
-        if(num2==0){
-            throw new IsValidAgeException("cannot divide by zero");
+    public static void drivingL(int age) throws IsValidAgeException{
+        if(age<18){
+            throw new IsValidAgeException("Illegel age to Drive...");
         }else{
-            int num = num1/num2;
+            System.out.println("It's a Valid age.");;
         }
     }
     public static void main(String args[]){
         try{
-            divide(10,0);
+            drivingL(18);
         }catch(IsValidAgeException e){
             System.out.println("Exception : "+e.getMessage());
         }

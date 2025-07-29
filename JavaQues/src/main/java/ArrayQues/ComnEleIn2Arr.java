@@ -1,5 +1,6 @@
+package ArrayQues;
+
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 //Write a java program to find common elements between two arrays?
 public class ComnEleIn2Arr {
@@ -25,7 +26,7 @@ public class ComnEleIn2Arr {
         Integer arr1[] = {1,2,3,4,5,6};
         Integer arr2[] = {5,6,7,8,9,10};
 
-//        ComnEleIn2Arr.useHashset(arr1,arr2);
+//        ArrayQues.ComnEleIn2Arr.useHashset(arr1,arr2);
         ComnEleIn2Arr.UseLoopNhashset(arr1,arr2);
     }
 }

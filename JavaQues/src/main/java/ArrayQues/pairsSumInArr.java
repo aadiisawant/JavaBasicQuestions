@@ -1,3 +1,5 @@
+package ArrayQues;
+
 import java.util.Scanner;
 
 

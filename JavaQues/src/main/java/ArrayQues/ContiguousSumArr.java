@@ -1,3 +1,5 @@
+package ArrayQues;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -17,7 +19,7 @@ public class ContiguousSumArr {
             int sum = arr[i];
             if(sum == n){
                 System.out.println("[ "+arr[i]+" ]");
-                System.out.println(sum);
+                System.out.println("sum :"+sum);
             }
             LinkedHashSet<Integer> hs = new LinkedHashSet<>();
             hs.add(i);

@@ -1,4 +1,4 @@
-//How to reverse each word of a string in Java?
+package Streams;//How to reverse each word of a string in Java?
 
 
 public class StringOperations {

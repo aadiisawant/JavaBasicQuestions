@@ -1,3 +1,5 @@
+package ArrayQues;
+
 import java.util.Scanner;
 
 public class MissingNumInArr {
@@ -17,9 +19,10 @@ public class MissingNumInArr {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the element: ");
-        int n = sc.nextInt(); //8
+//        System.out.println("Enter the total numbers: ");
+//        int n = sc.nextInt(); //8
         int arr [] = {1,2,3,5,6,7,8};
+        int n = arr[arr.length-1];
         int sumOfn = MissingNumInArr.SumOfNnums(n);
         int SumofEle = MissingNumInArr.sumOfELe(arr);
         int MsngNum  = sumOfn - SumofEle;

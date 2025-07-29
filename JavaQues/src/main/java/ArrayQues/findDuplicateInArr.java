@@ -1,3 +1,5 @@
+package ArrayQues;
+
 import java.util.HashMap;
 
 public class findDuplicateInArr {
@@ -21,6 +23,11 @@ public class findDuplicateInArr {
                 numFreq.put(arr[i], numFreq.get(arr[i])+1);
             }else{
                 numFreq.put(arr[i],1);
+            }
+        }
+        for(Integer key : numFreq.keySet()){
+            if(numFreq.get(key)>1){
+                System.out.println("Element with freq greater than 1 :"+numFreq.get(key));
             }
         }
         System.out.println(numFreq);
