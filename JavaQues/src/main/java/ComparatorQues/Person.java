@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class Person implements Comparable<Person>{
+public class Person {
 
     String name;
     int age;
@@ -14,11 +14,11 @@ public class Person implements Comparable<Person>{
         this.age = age;
     }
 
-    @Override
-    public int compareTo(Person o) {
-//        return Integer.compare(this.age, o.age);
-        return this.name.compareTo(o.name);
-    }
+//    @Override
+//    public int compareTo(Person o) {
+////        return Integer.compare(this.age, o.age);
+//        return this.name.compareTo(o.name);
+//    }
 
     @Override
     public String toString() {
@@ -31,14 +31,15 @@ public class Person implements Comparable<Person>{
     public static void main(String[] args) {
         List<Person> persons = Arrays.asList(
             new Person("aditya",24),
+            new Person("adira",20),
             new Person("ram",25),
             new Person("ben",21)
         );
 
         persons
                 .stream()
-//                .sorted(Comparator.comparing(p -> p.name))
-                .sorted()
+                .sorted(Comparator.comparing( (Person p) -> p.name).thenComparing(p -> p.age))
+//                .sorted()
                 .forEach(System.out::println);
     }
 }

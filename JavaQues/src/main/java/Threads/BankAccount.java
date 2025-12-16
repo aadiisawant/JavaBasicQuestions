@@ -5,54 +5,61 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BankAccount {
-    private int balance = 1000;
+  private  int balance = 100;
 
-    private Lock lock = new ReentrantLock();
+//  private synchronized void withdraw(int amount){
+//      if(amount<=balance){
+//          System.out.println(Thread.currentThread().getName()+ ", Processing for withdraw.");
+//          balance -= amount;
+//          try {
+//              Thread.sleep(3000);
+//          } catch (InterruptedException e) {
+//              throw new RuntimeException(e);
+//          }
+//          System.out.println(Thread.currentThread().getName()+" Remaining amount: "+balance);
+//      }else {
+//          System.out.println(Thread.currentThread().getName()+" has insufficient balance.");
+//      }
+//  }
+    private final Lock lock = new ReentrantLock();
+    private void withdraw(int amount){
 
-    public void withdraw(int amount){
-        System.out.println(Thread.currentThread().getName()+" attempting to withdraw: "+amount);
         try {
-            if (lock.tryLock(2000, TimeUnit.MILLISECONDS)) {
-                if (balance >= amount) {
+            if(lock.tryLock(4000, TimeUnit.MILLISECONDS)) {
+                if (amount <= balance) {
+                    System.out.println(Thread.currentThread().getName() + ", Processing for withdraw.");
+                    balance -= amount;
                     try {
-                        System.out.println(Thread.currentThread().getName() + " proceding with withdraw: " + amount);
                         Thread.sleep(3000);
-                        balance -= amount;
-                        System.out.println(Thread.currentThread().getName() + " Withdrawal Completed... Balance: "+balance);
-                    } catch (Exception e) {
+                    } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     } finally {
                         lock.unlock();
                     }
+                    System.out.println(Thread.currentThread().getName() + " Remaining amount: " + balance);
                 } else {
-                    System.out.println(Thread.currentThread().getName() + " Insufficien Balance.");
+                    System.out.println(Thread.currentThread().getName() + " has insufficient balance.");
                 }
-            }else {
-                System.out.println(Thread.currentThread().getName() + " could not acquire the lock.");
+            }else{
+                System.out.println(Thread.currentThread().getName()+" unable to acquire lock, try again after some time.");
             }
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-
     }
+
     public static void main(String[] args) {
-    BankAccount sbi = new BankAccount();
-    Runnable task = new Runnable() {
-        @Override
-        public void run() {
-            sbi.withdraw(500);
-        }
-    };
-    Thread t1 = new Thread(task, "thread-1");
-    Thread t2 = new Thread(task, "thread-2");
-    Thread t3= new Thread(task, "thread-3");
-    t1.start();
-//        try {
-////            Thread.sleep(100);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+        BankAccount sbi = new BankAccount();
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                sbi.withdraw(50);
+            }
+        };
+        Thread t1 = new Thread(task, "Thread 1");
+
+        Thread t2 = new Thread(task, "Thread 2");
+        t1.start();
         t2.start();
-        t3.start();
     }
 }
