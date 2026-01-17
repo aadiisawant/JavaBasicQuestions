@@ -1,5 +1,9 @@
 package Threads.ExecutorsP;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 public class MultipleThreadDemo {
 
     public static int factorial(int num){
@@ -17,23 +21,19 @@ public class MultipleThreadDemo {
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        Thread [] threads = new Thread[9];
+        ExecutorService executor = Executors.newFixedThreadPool(3);
         for(int i=1;i<10;i++){
             int finalI = i;
-            threads[i-1] = new Thread(
-                    ()->{
-                        long fact = factorial(finalI);
-                        System.out.println(fact+" ,"+Thread.currentThread().getName());
-                    }
-            );
-            threads[i-1].start();
+            executor.submit(()->{
+                long fact = factorial(finalI);
+                System.out.println(fact+" ,"+Thread.currentThread().getName());
+            });
         }
-        for(Thread thread: threads){
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+        executor.shutdown();
+        try {
+            executor.awaitTermination(100, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         System.out.println("total time: "+(System.currentTimeMillis()-startTime));
     }
